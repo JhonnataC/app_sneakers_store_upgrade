@@ -1,6 +1,7 @@
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter/material.dart';
+import 'package:sneakers_store/ShopPage.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -19,7 +20,7 @@ class _HomePageState extends State<HomePage> {
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
             child: Image.asset(
-              'assets/imgs/background_home3.png',
+              'assets/imgs/background_home.png',
               fit: BoxFit.cover,
             ),
           ),
@@ -31,6 +32,7 @@ class _HomePageState extends State<HomePage> {
                 fontFamily: 'Outfit',
                 fontWeight: FontWeight.bold,
                 fontSize: 40,
+                color: Color(0XFF03052C),
               ),
             ),
           ),
@@ -111,7 +113,11 @@ class _HomePageState extends State<HomePage> {
                     backgroundColor: const Color(0XFF515259),
                     elevation: 10,
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const ShopPage(),
+                    ));
+                  },
                   child: const Text(
                     'Get Started',
                     style: TextStyle(
