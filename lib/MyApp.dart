@@ -8,12 +8,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Sneakers Store',
-      theme:  ThemeData(
+      theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0XFFE7E9FF),
-        brightness: Brightness.light,
-        // primary: ,
-        // secondary: ,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color(0XFFA0CCF2),
         ),
       ),
       home: const HomePage(),

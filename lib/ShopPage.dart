@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:sneakers_store/BaseTenis.dart';
+import 'package:sneakers_store/HomePage.dart';
 
 class ShopPage extends StatefulWidget {
   const ShopPage({super.key});
@@ -25,7 +27,7 @@ class _ShopPageState extends State<ShopPage> {
           ),
           Column(
             children: [
-              // Top bar 
+              // Top bar
               SizedBox(
                 child: Padding(
                   padding: const EdgeInsets.only(top: 20),
@@ -36,7 +38,11 @@ class _ShopPageState extends State<ShopPage> {
                       Padding(
                         padding: const EdgeInsets.only(left: 20),
                         child: IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(
+                                    builder: (context) => const HomePage()));
+                          },
                           icon: const Icon(Icons.arrow_back_ios_new),
                           color: const Color(0XFF03052C),
                           iconSize: 30,
@@ -76,13 +82,38 @@ class _ShopPageState extends State<ShopPage> {
                   ),
                 ),
               ),
+              const SizedBox(
+                height: 20,
+              ),
               // ListView dos tênis
-              Padding(
-                padding: const EdgeInsets.only(top: 20),
-                child: SizedBox(
-                  child: ListView(
-                    
-                  ),
+              SizedBox(
+                height: 150,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: BaseTenis.lengthBase(),
+                  itemBuilder: (context, index) {
+                    return SizedBox(
+                      width: 150,
+                      height: 150,
+                      child: Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: ElevatedButton(
+                          onPressed: () {},
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: const Color(0XFFFFFFFF),
+                            elevation: 0.75,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          ),
+                          child: Transform.rotate(
+                            angle: -0.3,
+                            child: BaseTenis.getTenis(index).getImage,
+                          ),
+                        ),
+                      ),
+                    );
+                  },
                 ),
               ),
             ],

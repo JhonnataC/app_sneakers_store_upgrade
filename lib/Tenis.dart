@@ -7,7 +7,7 @@ class Tenis {
   late String _description;
   late String _subdescription;
   late double _price;
-  late AssetImage _image;
+  late Image _image;
 
   Tenis(this._name, this._description, this._subdescription, this._price,
       this._image);
@@ -20,6 +20,6 @@ class Tenis {
 
   double get getPrice => _price;
 
-  AssetImage get getImage => _image;
+  Image get getImage => _image;
 }
 
