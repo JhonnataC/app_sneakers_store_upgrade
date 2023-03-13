@@ -36,49 +36,49 @@ class BaseTenis {
         'Air Force 1 Cactus Jack',
         'Tênis Nike',
         'O Air Force 1 Cactus Jack é um tênis perfeito \npara quem curte um estilo street',
-        599.00,
+        649.00,
         imageCactus));
     _tenis.add(Tenis(
         'Air Force 1 OffWhite Black',
         'Tênis Nike',
         'O Air Force 1 OffWhite Black é um tênis perfeito \npara quem curte um estilo street',
-        599.00,
+        700.00,
         imageBlack));
     _tenis.add(Tenis(
         'Air Force 1 OffWhite Volt',
         'Tênis Nike',
         'O Air Force 1 OffWhite Volt é um tênis perfeito \npara quem curte um estilo street',
-        599.00,
+        649.00,
         imageVolt));
     _tenis.add(Tenis(
         'Air Jordan 1 Bred',
         'Tênis Nike',
         'O Air Air Jordan 1 Bred é um tênis perfeito \npara quem curte um estilo street',
-        599.00,
+        999.00,
         imageBred));
     _tenis.add(Tenis(
         'Air Jordan 1 Cactus Jack',
         'Tênis Nike',
         'O Air Jordan 1 Cactus Jack é um tênis perfeito \npara quem curte um estilo street',
-        599.00,
+        1100.00,
         imageJack));
     _tenis.add(Tenis(
         'Air Jordan 1 OffWhite',
         'Tênis Nike',
         'O Air Jordan 1 OffWhite é um tênis perfeito \npara quem curte um estilo street',
-        599.00,
+        899.00,
         imageOffwhite));
     _tenis.add(Tenis(
         'Air Jordan 1 OffWhite Chic',
         'Tênis Nike',
         'O Air Jordan 1 OffWhite Chicago é um tênis perfeito \npara quem curte um estilo street',
-        599.00,
+        1050.00,
         imageChicago));
     _tenis.add(Tenis(
         'Air Jordan 1 OffWhite Unc',
         'Tênis Nike',
         'O Air Jordan 1 OffWhite Unc é um tênis perfeito \npara quem curte um estilo street',
-        599.00,
+        349.00,
         imageUnc));
   }
 
