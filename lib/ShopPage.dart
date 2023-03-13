@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:sneakers_store/BaseTenis.dart';
 import 'package:sneakers_store/HomePage.dart';
+
+import 'Tenis.dart';
 
 class ShopPage extends StatefulWidget {
   const ShopPage({super.key});
@@ -12,6 +12,8 @@ class ShopPage extends StatefulWidget {
 }
 
 class _ShopPageState extends State<ShopPage> {
+  int tempIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,6 +27,7 @@ class _ShopPageState extends State<ShopPage> {
               fit: BoxFit.cover,
             ),
           ),
+          // Column dos elementos acima da Stack
           Column(
             children: [
               // Top bar
@@ -98,17 +101,24 @@ class _ShopPageState extends State<ShopPage> {
                       child: Padding(
                         padding: const EdgeInsets.all(10),
                         child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            setState(() {
+                              tempIndex = index;
+                            });
+                          },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: const Color(0XFFFFFFFF),
                             elevation: 0.75,
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
+                              borderRadius: BorderRadius.circular(40),
                             ),
                           ),
                           child: Transform.rotate(
-                            angle: -0.3,
-                            child: BaseTenis.getTenis(index).getImage,
+                            angle: -0.5,
+                            child: Padding(
+                              padding: const EdgeInsets.only(right: 8.0),
+                              child: BaseTenis.getTenis(index).getImage,
+                            ),
                           ),
                         ),
                       ),
@@ -116,10 +126,161 @@ class _ShopPageState extends State<ShopPage> {
                   },
                 ),
               ),
+              Stack(
+                children: [
+                  infoTenis(BaseTenis.getTenis(tempIndex)),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      const SizedBox(
+                        height: 460,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          ElevatedButton(
+                            onPressed: () {},
+                            style: ElevatedButton.styleFrom(
+                              elevation: 5,
+                              shape: const CircleBorder(),
+                              minimumSize: const Size(75, 60),
+                              backgroundColor: const Color(0XFF03052C),
+                            ),
+                            child: const Icon(
+                              Icons.ios_share_rounded,
+                              color: Colors.white,
+                            ),
+                          ),
+                          ElevatedButton(
+                            onPressed: () {},
+                            style: ElevatedButton.styleFrom(
+                                elevation: 5,
+                                shape: const CircleBorder(),
+                                minimumSize: const Size(75, 60),
+                                backgroundColor: const Color(0XFFA0CCF2)),
+                            child: const Icon(
+                              Icons.shopping_bag_outlined,
+                              color: Colors.white,
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 30,
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ],
           ),
         ],
       ),
     );
   }
+}
+
+Widget infoTenis(Tenis tenis) {
+  return SizedBox(
+    child: Column(
+      children: [
+        // Imagem do tênis
+        SizedBox(
+          width: 300,
+          height: 300,
+          child: Padding(
+            padding: const EdgeInsets.only(right: 50),
+            child: Transform.rotate(
+              angle: -0.5,
+              child: tenis.getImage,
+            ),
+          ),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 10),
+              child: Text(
+                tenis.getName,
+                style: const TextStyle(
+                  fontFamily: 'Outfit',
+                  fontWeight: FontWeight.bold,
+                  fontSize: 30,
+                  color: Color(0XFF03052C),
+                ),
+              ),
+            ),
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 10),
+              child: Text(
+                tenis.getDescription,
+                style: const TextStyle(
+                  fontFamily: 'Oufit',
+                  fontWeight: FontWeight.normal,
+                  fontSize: 20,
+                  color: Color(0XFF03052C),
+                ),
+              ),
+            ),
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 10),
+              child: Text(
+                tenis.getSubdescription,
+                style: const TextStyle(
+                  fontFamily: 'Outfit',
+                  fontWeight: FontWeight.normal,
+                  color: Color(0XFF03052C),
+                ),
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 30),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: const [
+            Padding(
+              padding: EdgeInsets.only(left: 10),
+              child: Text(
+                'Price',
+                style: TextStyle(
+                  fontFamily: 'Outfit',
+                  fontSize: 20,
+                  color: Color(0XFF03052C),
+                ),
+              ),
+            ),
+          ],
+        ),
+        Row(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 10),
+              child: Text(
+                '\$${tenis.getPrice}0',
+                style: const TextStyle(
+                  fontFamily: 'Outfit',
+                  fontWeight: FontWeight.bold,
+                  fontSize: 30,
+                  color: Color(0XFF03052C),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ],
+    ),
+  );
 }

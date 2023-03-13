@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sneakers_store/ShopPage.dart';
 
-
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -40,7 +39,7 @@ class _HomePageState extends State<HomePage> {
             children: [
               // Width da column
               SizedBox(
-                width: MediaQuery.of(context).size.width,
+                width: MediaQuery.of(context).size.height,
               ),
               const SizedBox(
                 height: 100,
