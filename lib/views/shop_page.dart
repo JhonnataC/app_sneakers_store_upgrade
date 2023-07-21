@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:sneakers_store/BaseTenis.dart';
-import 'package:sneakers_store/HomePage.dart';
+import 'package:sneakers_store/models/base_tenis.dart';
+import 'package:sneakers_store/views/home_page.dart';
 
-import 'Tenis.dart';
+import '../models/tenis.dart';
 
 class ShopPage extends StatefulWidget {
   const ShopPage({super.key});
@@ -43,8 +43,10 @@ class _ShopPageState extends State<ShopPage> {
                         child: IconButton(
                           onPressed: () {
                             Navigator.of(context).pushReplacement(
-                                MaterialPageRoute(
-                                    builder: (context) => const HomePage()));
+                              MaterialPageRoute(
+                                builder: (context) => const HomePage(),
+                              ),
+                            );
                           },
                           icon: const Icon(Icons.arrow_back_ios_new),
                           color: const Color(0XFF03052C),
@@ -248,9 +250,9 @@ Widget infoTenis(Tenis tenis) {
           ],
         ),
         const SizedBox(height: 30),
-        Row(
+        const Row(
           mainAxisAlignment: MainAxisAlignment.start,
-          children: const [
+          children: [
             Padding(
               padding: EdgeInsets.only(left: 10),
               child: Text(

@@ -1,7 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 
-import 'package:sneakers_store/Tenis.dart';
+import 'tenis.dart';
 
 class BaseTenis {
   static List<Tenis> _tenis = [];

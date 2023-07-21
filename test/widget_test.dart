@@ -7,7 +7,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:sneakers_store/MyApp.dart';
 
 import 'package:sneakers_store/main.dart';
 
