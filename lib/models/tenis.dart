@@ -8,6 +8,7 @@ class Tenis {
   String subdescription;
   double price;
   Image image;
+  int quantidade;
 
   Tenis(
     this.name,
@@ -15,6 +16,7 @@ class Tenis {
     this.subdescription,
     this.price,
     this.image,
+    this.quantidade,
   );
 
   String get getName => name;

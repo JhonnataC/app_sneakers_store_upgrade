@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'tenis.dart';
 
 class BaseTenis {
-  static List<Tenis> _tenis = [];
+  static final List<Tenis> _tenis = [];
 
   static final Image imageYeezy =
       Image.asset('assets/imgs/ad_yeezy_boost350_bred.png');
@@ -27,59 +27,77 @@ class BaseTenis {
 
   static void criarBase() {
     _tenis.add(Tenis(
-        'Ad Yeezy Boost 350 Bred',
-        'Tênis Adidas',
-        'O Yeezy Boost 350 Bred é um tênis perfeito \npara quem curte um estilo street',
-        599.00,
-        imageYeezy));
+      'Ad Yeezy Boost 350 Bred',
+      'Tênis Adidas',
+      'O Yeezy Boost 350 Bred é um tênis perfeito \npara quem curte um estilo street',
+      599.00,
+      imageYeezy,
+      10,
+    ));
     _tenis.add(Tenis(
-        'Air Force 1 Cactus Jack',
-        'Tênis Nike',
-        'O Air Force 1 Cactus Jack é um tênis perfeito \npara quem curte um estilo street',
-        649.00,
-        imageCactus));
+      'Air Force 1 Cactus Jack',
+      'Tênis Nike',
+      'O Air Force 1 Cactus Jack é um tênis perfeito \npara quem curte um estilo street',
+      649.00,
+      imageCactus,
+      10,
+    ));
     _tenis.add(Tenis(
-        'Air Force 1 OffWhite Black',
-        'Tênis Nike',
-        'O Air Force 1 OffWhite Black é um tênis perfeito \npara quem curte um estilo street',
-        700.00,
-        imageBlack));
+      'Air Force 1 OffWhite Black',
+      'Tênis Nike',
+      'O Air Force 1 OffWhite Black é um tênis perfeito \npara quem curte um estilo street',
+      700.00,
+      imageBlack,
+      10,
+    ));
     _tenis.add(Tenis(
-        'Air Force 1 OffWhite Volt',
-        'Tênis Nike',
-        'O Air Force 1 OffWhite Volt é um tênis perfeito \npara quem curte um estilo street',
-        649.00,
-        imageVolt));
+      'Air Force 1 OffWhite Volt',
+      'Tênis Nike',
+      'O Air Force 1 OffWhite Volt é um tênis perfeito \npara quem curte um estilo street',
+      649.00,
+      imageVolt,
+      10,
+    ));
     _tenis.add(Tenis(
-        'Air Jordan 1 Bred',
-        'Tênis Nike',
-        'O Air Air Jordan 1 Bred é um tênis perfeito \npara quem curte um estilo street',
-        999.00,
-        imageBred));
+      'Air Jordan 1 Bred',
+      'Tênis Nike',
+      'O Air Air Jordan 1 Bred é um tênis perfeito \npara quem curte um estilo street',
+      999.00,
+      imageBred,
+      10,
+    ));
     _tenis.add(Tenis(
-        'Air Jordan 1 Cactus Jack',
-        'Tênis Nike',
-        'O Air Jordan 1 Cactus Jack é um tênis perfeito \npara quem curte um estilo street',
-        1100.00,
-        imageJack));
+      'Air Jordan 1 Cactus Jack',
+      'Tênis Nike',
+      'O Air Jordan 1 Cactus Jack é um tênis perfeito \npara quem curte um estilo street',
+      1100.00,
+      imageJack,
+      10,
+    ));
     _tenis.add(Tenis(
-        'Air Jordan 1 OffWhite',
-        'Tênis Nike',
-        'O Air Jordan 1 OffWhite é um tênis perfeito \npara quem curte um estilo street',
-        899.00,
-        imageOffwhite));
+      'Air Jordan 1 OffWhite',
+      'Tênis Nike',
+      'O Air Jordan 1 OffWhite é um tênis perfeito \npara quem curte um estilo street',
+      899.00,
+      imageOffwhite,
+      10,
+    ));
     _tenis.add(Tenis(
-        'Air Jordan 1 OffWhite Chic',
-        'Tênis Nike',
-        'O Air Jordan 1 OffWhite Chicago é um tênis perfeito \npara quem curte um estilo street',
-        1050.00,
-        imageChicago));
+      'Air Jordan 1 OffWhite Chic',
+      'Tênis Nike',
+      'O Air Jordan 1 OffWhite Chicago é um tênis perfeito \npara quem curte um estilo street',
+      1050.00,
+      imageChicago,
+      10,
+    ));
     _tenis.add(Tenis(
-        'Air Jordan 1 OffWhite Unc',
-        'Tênis Nike',
-        'O Air Jordan 1 OffWhite Unc é um tênis perfeito \npara quem curte um estilo street',
-        349.00,
-        imageUnc));
+      'Air Jordan 1 OffWhite Unc',
+      'Tênis Nike',
+      'O Air Jordan 1 OffWhite Unc é um tênis perfeito \npara quem curte um estilo street',
+      349.00,
+      imageUnc,
+      10,
+    ));
   }
 
   static Tenis getTenis(int index) => _tenis[index];
