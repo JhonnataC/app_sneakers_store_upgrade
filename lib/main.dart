@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:sneakers_store/service/base_dados.dart';
+import 'package:sneakers_store/service/connection.dart';
 
 import 'models/base_tenis.dart';
 import 'views/home_page.dart';
 
-void main() {
+void main() async {
   BaseTenis.criarBase();
+  await Connection.conectarSGBD();
   runApp(const MyApp());
 }
 
@@ -13,12 +16,37 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeData themeData = ThemeData();
     return MaterialApp(
       title: 'Sneakers Store',
-      theme: ThemeData(
+      theme: themeData.copyWith(
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(
           seedColor: const Color(0XFFA0CCF2),
+        ),
+        textTheme: themeData.textTheme.copyWith(
+          titleLarge: const TextStyle(
+            fontFamily: 'Outfit',
+            fontWeight: FontWeight.bold,
+            fontSize: 35,
+            color: Color(0XFF03052C),
+          ),
+          titleMedium: const TextStyle(
+            fontFamily: 'Outfit',
+            fontWeight: FontWeight.bold,
+            fontSize: 25,
+            color: Color(0XFF03052C),
+          ),
+          bodyMedium: const TextStyle(
+            color: Color(0XFF03052C),
+            fontFamily: 'Outfit',
+            fontSize: 20,
+          ),
+          bodySmall: const TextStyle(
+            color: Color(0XFF03052C),
+            fontFamily: 'Outfit',
+            fontSize: 15,
+          ),
         ),
       ),
       home: const HomePage(),

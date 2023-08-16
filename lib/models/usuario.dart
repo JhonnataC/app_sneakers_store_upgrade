@@ -1,9 +1,19 @@
+import 'package:postgres/postgres.dart';
+
 class Usuario {
   String login;
-  String senha;
+  String password;
 
   Usuario(
     this.login,
-    this.senha,
+    this.password,
   );
+
+  factory Usuario.fromMap(PostgreSQLResult usuarioMap) {
+    final usuario = usuarioMap.first.first;
+    return Usuario(
+      usuario['login'],
+      usuario['senha'],
+    );
+  }
 }

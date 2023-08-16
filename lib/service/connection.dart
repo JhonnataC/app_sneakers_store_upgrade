@@ -3,7 +3,7 @@ import 'package:postgres/postgres.dart';
 class Connection {
   static late final PostgreSQLConnection _connection;
 
-  static Future<void> conectarBaseDeDados() async {
+  static Future<void> conectarSGBD() async {
     _connection = PostgreSQLConnection(
       'localhost',
       5432,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sneakers_store/models/base_tenis.dart';
 import 'package:sneakers_store/views/home_page.dart';
+import 'package:sneakers_store/widgets/logo.dart';
 
 import '../models/tenis.dart';
 
@@ -16,8 +17,8 @@ class _ShopPageState extends State<ShopPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
+    return Material(
+      child: Stack(
         children: [
           SizedBox(
             width: MediaQuery.of(context).size.width,
@@ -38,35 +39,29 @@ class _ShopPageState extends State<ShopPage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       // Botão de voltar
-                      Padding(
-                        padding: const EdgeInsets.only(left: 20),
-                        child: IconButton(
-                          onPressed: () {
-                            Navigator.of(context).pushReplacement(
-                              MaterialPageRoute(
-                                builder: (context) => const HomePage(),
-                              ),
-                            );
-                          },
-                          icon: const Icon(Icons.arrow_back_ios_new),
-                          color: const Color(0XFF03052C),
-                          iconSize: 30,
-                          style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all<Color>(
-                              const Color(0XFFCBC7C8).withOpacity(0.3),
-                            ),
-                          ),
-                        ),
-                      ),
-                      // Logo
-                      const Text(
-                        'SS',
-                        style: TextStyle(
-                          fontFamily: 'Outfit',
-                          fontWeight: FontWeight.bold,
-                          fontSize: 40,
-                          color: Color(0XFF03052C),
-                        ),
+                      // Padding(
+                      //   padding: const EdgeInsets.only(left: 20),
+                      //   child: IconButton(
+                      //     onPressed: () {
+                      //       Navigator.of(context).pushReplacement(
+                      //         MaterialPageRoute(
+                      //           builder: (context) => const HomePage(),
+                      //         ),
+                      //       );
+                      //     },
+                      //     icon: const Icon(Icons.arrow_back_ios_new),
+                      //     color: const Color(0XFF03052C),
+                      //     iconSize: 30,
+                      //     style: ButtonStyle(
+                      //       backgroundColor: MaterialStateProperty.all<Color>(
+                      //         const Color(0XFFCBC7C8).withOpacity(0.3),
+                      //       ),
+                      //     ),
+                      //   ),
+                      // ),
+                      const Padding(
+                        padding: EdgeInsets.only(left: 20),
+                        child: Logo(),
                       ),
                       // Botão de opções
                       Padding(
