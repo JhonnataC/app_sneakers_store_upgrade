@@ -11,11 +11,10 @@ class RegistrationPage extends StatefulWidget {
 }
 
 class _RegistrationPageState extends State<RegistrationPage> {
-  final TextEditingController loginController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
-  final TextEditingController confirmPasswordController =
-      TextEditingController();
   final formKey = GlobalKey<FormState>();
+  TextEditingController loginController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController confirmPasswordController = TextEditingController();
   var passwordCache = '';
   var passwordConfirmCache = '';
   bool obscuredTextPassword = true;
@@ -141,6 +140,8 @@ class _RegistrationPageState extends State<RegistrationPage> {
                     } else {
                       BaseDados.addUsuario(
                           loginController.text, passwordController.text);
+                      // ignore: use_build_context_synchronously
+                      Navigator.pop(context);
                     }
                   }
                 },
