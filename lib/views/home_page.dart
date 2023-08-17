@@ -36,7 +36,7 @@ class _HomePageState extends State<HomePage> {
               const SizedBox(height: 35),
               const InitialText(),
               const SizedBox(height: 10),
-              InitialForm(),
+              const InitialForm(),
             ],
           )
         ],

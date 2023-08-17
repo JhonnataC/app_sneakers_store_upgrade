@@ -1,33 +1,31 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:postgres/postgres.dart';
 
-class Tenis {
+class Sneaker {
   String name;
   String description;
   String subdescription;
   double price;
   Image image;
-  int quantidade;
+  int amount;
 
-  Tenis(
+  Sneaker(
     this.name,
     this.description,
     this.subdescription,
     this.price,
     this.image,
-    this.quantidade,
+    this.amount,
   );
 
-  factory Tenis.fromMap(PostgreSQLResult tenisMap) {
+  factory Sneaker.fromMap(PostgreSQLResult tenisMap) {
     final tenis = tenisMap.first.first;
-    return Tenis(
+    return Sneaker(
       tenis['nome'],
       tenis['descricao'],
       tenis['subdescricao'],
       tenis['preco'],
-      tenis['imagem'], // Convertar para Image de novo
+      tenis['imagem'], // Converter para Image
       tenis['quantidade'],
     );
   }
@@ -41,4 +39,6 @@ class Tenis {
   double get getPrice => price;
 
   Image get getImage => image;
+
+  int get getAmount => amount;
 }

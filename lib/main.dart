@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:sneakers_store/service/base_dados.dart';
 import 'package:sneakers_store/service/connection.dart';
+import 'package:sneakers_store/views/error_page.dart';
 
-import 'models/base_tenis.dart';
+import 'utils/list_sneakers.dart';
 import 'views/home_page.dart';
 
 void main() async {
-  BaseTenis.criarBase();
-  await Connection.conectarSGBD();
-  runApp(const MyApp());
+  ListSneakers.criarBase();
+  runApp(await Connection.conectarSGBD() ? const MyApp() : const ErrorPage());
 }
 
 class MyApp extends StatelessWidget {

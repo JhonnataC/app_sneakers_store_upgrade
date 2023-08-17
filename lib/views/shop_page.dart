@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:sneakers_store/models/base_tenis.dart';
+import 'package:sneakers_store/utils/list_sneakers.dart';
 import 'package:sneakers_store/views/home_page.dart';
 import 'package:sneakers_store/widgets/logo.dart';
 
-import '../models/tenis.dart';
+import '../models/sneaker.dart';
 
 class ShopPage extends StatefulWidget {
   const ShopPage({super.key});
@@ -38,27 +38,6 @@ class _ShopPageState extends State<ShopPage> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      // Botão de voltar
-                      // Padding(
-                      //   padding: const EdgeInsets.only(left: 20),
-                      //   child: IconButton(
-                      //     onPressed: () {
-                      //       Navigator.of(context).pushReplacement(
-                      //         MaterialPageRoute(
-                      //           builder: (context) => const HomePage(),
-                      //         ),
-                      //       );
-                      //     },
-                      //     icon: const Icon(Icons.arrow_back_ios_new),
-                      //     color: const Color(0XFF03052C),
-                      //     iconSize: 30,
-                      //     style: ButtonStyle(
-                      //       backgroundColor: MaterialStateProperty.all<Color>(
-                      //         const Color(0XFFCBC7C8).withOpacity(0.3),
-                      //       ),
-                      //     ),
-                      //   ),
-                      // ),
                       const Padding(
                         padding: EdgeInsets.only(left: 20),
                         child: Logo(),
@@ -90,7 +69,7 @@ class _ShopPageState extends State<ShopPage> {
                 height: 150,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  itemCount: BaseTenis.lengthBase(),
+                  itemCount: ListSneakers.lengthBase(),
                   itemBuilder: (context, index) {
                     return SizedBox(
                       width: 150,
@@ -114,7 +93,7 @@ class _ShopPageState extends State<ShopPage> {
                             angle: -0.5,
                             child: Padding(
                               padding: const EdgeInsets.only(right: 8.0),
-                              child: BaseTenis.getTenis(index).getImage,
+                              child: ListSneakers.getSneakers(index).getImage,
                             ),
                           ),
                         ),
@@ -125,7 +104,7 @@ class _ShopPageState extends State<ShopPage> {
               ),
               Stack(
                 children: [
-                  infoTenis(BaseTenis.getTenis(tempIndex)),
+                  infoTenis(ListSneakers.getSneakers(tempIndex)),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.end,
                     crossAxisAlignment: CrossAxisAlignment.end,
@@ -178,7 +157,7 @@ class _ShopPageState extends State<ShopPage> {
   }
 }
 
-Widget infoTenis(Tenis tenis) {
+Widget infoTenis(Sneaker tenis) {
   return SizedBox(
     child: Column(
       children: [
@@ -266,7 +245,7 @@ Widget infoTenis(Tenis tenis) {
             Padding(
               padding: const EdgeInsets.only(left: 10),
               child: Text(
-                '\$${tenis.getPrice}0',
+                '\$${tenis.getPrice.toStringAsFixed(2)}',
                 style: const TextStyle(
                   fontFamily: 'Outfit',
                   fontWeight: FontWeight.bold,

@@ -119,10 +119,10 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 ),
               ),
               flag
-                  ? const Text(
+                  ? Text(
                       'Login already in use',
                       style: TextStyle(
-                        color: Colors.red,
+                        color: Colors.red[900],
                         fontSize: 15,
                       ),
                     )
@@ -132,13 +132,13 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 label: 'All ready!',
                 onPressed: () async {
                   if (formKey.currentState!.validate()) {
-                    if (await BaseDados.isUsuario(
+                    if (await BaseDados.isUser(
                         loginController.text, passwordController.text)) {
                       setState(() {
                         flag = true;
                       });
-                    } else {
-                      BaseDados.addUsuario(
+                    } else {             
+                      BaseDados.addUser(
                           loginController.text, passwordController.text);
                       // ignore: use_build_context_synchronously
                       Navigator.pop(context);
