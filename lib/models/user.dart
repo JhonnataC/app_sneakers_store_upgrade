@@ -1,17 +1,17 @@
 import 'package:postgres/postgres.dart';
 
-class Usuario {
+class User {
   String login;
   String password;
 
-  Usuario(
+  User(
     this.login,
     this.password,
   );
 
-  factory Usuario.fromMap(PostgreSQLResult usuarioMap) {
+  factory User.fromMap(PostgreSQLResult usuarioMap) {
     final usuario = usuarioMap.first.first;
-    return Usuario(
+    return User(
       usuario['login'],
       usuario['senha'],
     );

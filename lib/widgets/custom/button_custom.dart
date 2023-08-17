@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:sneakers_store/views/shop_page.dart';
 
 class ButtonCustom extends StatelessWidget {
   final String label;

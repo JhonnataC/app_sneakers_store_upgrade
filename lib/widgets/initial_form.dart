@@ -6,19 +6,22 @@ import '../views/shop_page.dart';
 import 'custom/button_custom.dart';
 import 'custom/text_field_custom.dart';
 
-class InitialForm extends StatelessWidget {
-  InitialForm({super.key});
-  final formKey = GlobalKey<FormState>();
+class InitialForm extends StatefulWidget {
+  const InitialForm({super.key});
 
-  Future<bool> _validateUser(String login, String password) async {
-    return await BaseDados.isUsuario(login, password);
-  }
+  @override
+  State<InitialForm> createState() => _InitialFormState();
+}
+
+class _InitialFormState extends State<InitialForm> {
+  final formKey = GlobalKey<FormState>();
+  TextEditingController loginController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  bool obscuredPasswordText = true;
+  bool flag = false;
 
   @override
   Widget build(BuildContext context) {
-    final loginController = TextEditingController();
-    final passwordController = TextEditingController();
-
     return Form(
       key: formKey,
       child: Column(
@@ -42,6 +45,19 @@ class InitialForm extends StatelessWidget {
             child: TextFieldCustom(
               label: 'Password',
               controller: passwordController,
+              obscureText: obscuredPasswordText,
+              suffix: IconButton(
+                icon: Icon(
+                  obscuredPasswordText
+                      ? Icons.visibility
+                      : Icons.visibility_off,
+                ),
+                onPressed: () {
+                  setState(() {
+                    obscuredPasswordText = !obscuredPasswordText;
+                  });
+                },
+              ),
               validator: (text) {
                 if (text == null || text.isEmpty) {
                   return 'fill in the field password!';
@@ -50,6 +66,15 @@ class InitialForm extends StatelessWidget {
               },
             ),
           ),
+          flag
+              ? Text(
+                  'login or passwords are wrong',
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: Colors.red[900],
+                  ),
+                )
+              : const SizedBox(),
           const SizedBox(height: 10),
           SizedBox(
             width: 200,
@@ -58,7 +83,7 @@ class InitialForm extends StatelessWidget {
               label: 'Sign in',
               onPressed: () async {
                 if (formKey.currentState!.validate()) {
-                  if (await _validateUser(
+                  if (await BaseDados.isUser(
                       loginController.text, passwordController.text)) {
                     // ignore: use_build_context_synchronously
                     Navigator.pushReplacement(
@@ -67,6 +92,10 @@ class InitialForm extends StatelessWidget {
                         builder: (context) => const ShopPage(),
                       ),
                     );
+                  } else {
+                    setState(() {
+                      flag = true;
+                    });
                   }
                 }
               },
@@ -88,7 +117,7 @@ class InitialForm extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => RegistrationPage(),
+                    builder: (context) => const RegistrationPage(),
                   ),
                 );
               },

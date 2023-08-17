@@ -1,4 +1,4 @@
-# sneakers_store
+# sneakers_store_upgrade
 
 A new Flutter project.
 
