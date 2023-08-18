@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:sneakers_store/models/sneaker.dart';
+import 'package:sneakers_store/service/base_dados.dart';
 import 'package:sneakers_store/utils/list_sneakers.dart';
-import 'package:sneakers_store/widgets/logo.dart';
-
-import '../models/sneaker.dart';
+import 'package:sneakers_store/views/home_page.dart';
+import 'package:sneakers_store/views/purchase_page.dart';
+import 'package:sneakers_store/widgets/components/logo.dart';
+import 'package:sneakers_store/widgets/components/sneakers_info.dart';
 
 class ShopPage extends StatefulWidget {
   const ShopPage({super.key});
@@ -13,11 +16,12 @@ class ShopPage extends StatefulWidget {
 
 class _ShopPageState extends State<ShopPage> {
   int tempIndex = 0;
+  late Sneaker sneakerCurrent;
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: Stack(
+    return Scaffold(
+      body: Stack(
         children: [
           SizedBox(
             width: MediaQuery.of(context).size.width,
@@ -27,7 +31,7 @@ class _ShopPageState extends State<ShopPage> {
               fit: BoxFit.cover,
             ),
           ),
-          // Column dos elementos acima da Stack
+          // Column dos elementos sob a Stack
           Column(
             children: [
               // Top bar
@@ -41,12 +45,18 @@ class _ShopPageState extends State<ShopPage> {
                         padding: EdgeInsets.only(left: 20),
                         child: Logo(),
                       ),
-                      // Botão de opções
                       Padding(
                         padding: const EdgeInsets.only(right: 20),
                         child: IconButton(
-                          onPressed: () {},
-                          icon: const Icon(Icons.more_vert),
+                          onPressed: () {
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const HomePage(),
+                              ),
+                            );
+                          },
+                          icon: const Icon(Icons.logout_rounded),
                           color: const Color(0XFF03052C),
                           iconSize: 30,
                           style: ButtonStyle(
@@ -79,6 +89,7 @@ class _ShopPageState extends State<ShopPage> {
                           onPressed: () {
                             setState(() {
                               tempIndex = index;
+                              sneakerCurrent = ;
                             });
                           },
                           style: ElevatedButton.styleFrom(
@@ -93,7 +104,8 @@ class _ShopPageState extends State<ShopPage> {
                             child: Padding(
                               padding: const EdgeInsets.only(right: 8.0),
                               child: Image.memory(
-                                  ListSneakers.getSneakers(index).getImage),
+                                ListSneakers.getSneakers(index).getImage,
+                              ),
                             ),
                           ),
                         ),
@@ -104,7 +116,9 @@ class _ShopPageState extends State<ShopPage> {
               ),
               Stack(
                 children: [
-                  infoTenis(ListSneakers.getSneakers(tempIndex)),
+                  SneakersInfo(
+                    sneaker: ListSneakers.getSneakers(tempIndex),
+                  ),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.end,
                     crossAxisAlignment: CrossAxisAlignment.end,
@@ -116,20 +130,6 @@ class _ShopPageState extends State<ShopPage> {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           ElevatedButton(
-                            onPressed: () {},
-                            style: ElevatedButton.styleFrom(
-                              elevation: 5,
-                              shape: const CircleBorder(),
-                              minimumSize: const Size(75, 60),
-                              backgroundColor: const Color(0XFF03052C),
-                            ),
-                            child: const Icon(
-                              Icons.ios_share_rounded,
-                              color: Colors.white,
-                            ),
-                          ),
-                          ElevatedButton(
-                            onPressed: () {},
                             style: ElevatedButton.styleFrom(
                                 elevation: 5,
                                 shape: const CircleBorder(),
@@ -139,6 +139,14 @@ class _ShopPageState extends State<ShopPage> {
                               Icons.shopping_bag_outlined,
                               color: Colors.white,
                             ),
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => PurchasePage(),
+                                ),
+                              );
+                            },
                           ),
                           const SizedBox(
                             width: 30,
@@ -155,108 +163,4 @@ class _ShopPageState extends State<ShopPage> {
       ),
     );
   }
-}
-
-Widget infoTenis(Sneaker tenis) {
-  return SizedBox(
-    child: Column(
-      children: [
-        // Imagem do tênis
-        SizedBox(
-          width: 300,
-          height: 300,
-          child: Padding(
-            padding: const EdgeInsets.only(right: 50),
-            child: Transform.rotate(
-              angle: -0.5,
-              child: Image.memory(tenis.getImage),
-            ),
-          ),
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 10),
-              child: Text(
-                tenis.getName,
-                style: const TextStyle(
-                  fontFamily: 'Outfit',
-                  fontWeight: FontWeight.bold,
-                  fontSize: 30,
-                  color: Color(0XFF03052C),
-                ),
-              ),
-            ),
-          ],
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 10),
-              child: Text(
-                tenis.getDescription,
-                style: const TextStyle(
-                  fontFamily: 'Oufit',
-                  fontWeight: FontWeight.normal,
-                  fontSize: 20,
-                  color: Color(0XFF03052C),
-                ),
-              ),
-            ),
-          ],
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 10),
-              child: Text(
-                tenis.getSubdescription,
-                style: const TextStyle(
-                  fontFamily: 'Outfit',
-                  fontWeight: FontWeight.normal,
-                  color: Color(0XFF03052C),
-                ),
-              ),
-            ),
-          ],
-        ),
-        const SizedBox(height: 30),
-        const Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Padding(
-              padding: EdgeInsets.only(left: 10),
-              child: Text(
-                'Price',
-                style: TextStyle(
-                  fontFamily: 'Outfit',
-                  fontSize: 20,
-                  color: Color(0XFF03052C),
-                ),
-              ),
-            ),
-          ],
-        ),
-        Row(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 10),
-              child: Text(
-                '\$${tenis.getPrice.toStringAsFixed(2)}',
-                style: const TextStyle(
-                  fontFamily: 'Outfit',
-                  fontWeight: FontWeight.bold,
-                  fontSize: 30,
-                  color: Color(0XFF03052C),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ],
-    ),
-  );
 }

@@ -27,7 +27,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
       appBar: AppBar(
         title: Text(
           'Registration Page',
-          style: Theme.of(context).textTheme.titleMedium,
+          style: Theme.of(context).textTheme.titleSmall,
         ),
         centerTitle: true,
         backgroundColor: const Color(0XFFA0CCF2),
@@ -137,7 +137,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                       setState(() {
                         flag = true;
                       });
-                    } else {             
+                    } else {
                       BaseDados.addUser(
                           loginController.text, passwordController.text);
                       // ignore: use_build_context_synchronously

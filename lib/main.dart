@@ -34,7 +34,13 @@ class MyApp extends StatelessWidget {
           titleMedium: const TextStyle(
             fontFamily: 'Outfit',
             fontWeight: FontWeight.bold,
-            fontSize: 25,
+            fontSize: 30,
+            color: Color(0XFF03052C),
+          ),
+          titleSmall: const TextStyle(
+            fontFamily: 'Outfit',
+            fontWeight: FontWeight.bold,
+            fontSize: 20,
             color: Color(0XFF03052C),
           ),
           bodyMedium: const TextStyle(

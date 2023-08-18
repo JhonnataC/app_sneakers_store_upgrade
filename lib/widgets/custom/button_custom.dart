@@ -15,10 +15,10 @@ class ButtonCustom extends StatelessWidget {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         backgroundColor: const Color(0XFF515259),
-        elevation: 10,
+        elevation: 2,
       ),
       onPressed: onPressed,
-      child:Text(
+      child: Text(
         label,
         style: const TextStyle(
           fontFamily: 'Outfit',

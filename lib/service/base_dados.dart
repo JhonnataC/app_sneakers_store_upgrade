@@ -6,17 +6,11 @@ import 'package:sneakers_store/service/connection.dart';
 
 class BaseDados {
   static final _connection = Connection.connection;
+  static late final sneakersList;
 
-  // static void _createTables() async {
-  //   await _connection.query(
-  //       'CREATE TABLE IF NOT EXISTS usuario (id SERIAL PRIMARY KEY,login VARCHAR(20) UNIQUE NOT NULL,	senha VARCHAR(20) NOT NULL)');
-
-  //   await _connection.query(
-  //       'CREATE TABLE IF NOT EXISTS tenis (id SERIAL PRIMARY KEY, nome VARCHAR(100) UNIQUE NOT NULL, descricao VARCHAR(255), subdescricao VARCHAR(255), preco NUMERIC(6,2),	imagem BYTEA,	quantidade INT)');
-
-  //   await _connection.query(
-  //       'CREATE TABLE IF NOT EXISTS compra ( id SERIAL PRIMARY KEY,	usuario_id INT NOT NULL REFERENCES usuario(id),	tenis_id INT NOT NULL REFERENCES tenis(id))');
-  // }
+  static createSneakersList() {
+    
+  }
 
   static Future<bool> isUser(String login, String password) async {
     try {

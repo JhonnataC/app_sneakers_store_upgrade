@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:sneakers_store/widgets/initial_form.dart';
-import 'package:sneakers_store/widgets/initial_text.dart';
+import 'package:sneakers_store/widgets/components/login_form.dart';
+import 'package:sneakers_store/widgets/components/initial_text.dart';
 
-import '../widgets/logo.dart';
+import '../widgets/components/logo.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

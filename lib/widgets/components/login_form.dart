@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:sneakers_store/service/base_dados.dart';
 import 'package:sneakers_store/views/registration_page.dart';
 
-import '../views/shop_page.dart';
-import 'custom/button_custom.dart';
-import 'custom/text_field_custom.dart';
+import '../../views/shop_page.dart';
+import '../custom/button_custom.dart';
+import '../custom/text_field_custom.dart';
 
 class InitialForm extends StatefulWidget {
   const InitialForm({super.key});
