@@ -6,6 +6,7 @@ import 'utils/list_sneakers.dart';
 import 'views/home_page.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   ListSneakers.criarBase();
   runApp(await Connection.conectarSGBD() ? const MyApp() : const ErrorPage());
 }

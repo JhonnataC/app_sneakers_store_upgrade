@@ -91,6 +91,7 @@ class ListSneakers {
       await imageToUint8List(imageUnc),
       10,
     ));
+    // _addAllSneakersSgbd();
   }
 
   static Sneaker getSneakers(int index) => sneakers[index];
@@ -98,19 +99,23 @@ class ListSneakers {
   static int lengthBase() => sneakers.length;
 }
 
-void _addAllSneakers() {
-  var listSneakers = ListSneakers.sneakers;
-  for (var sneaker in listSneakers) {
-    Connection.connection.query(
-        'INSERT INTO tenis(nome, descricao, subdescricao, preco, imagem, quantidade) VALUES (@nome, @descricao, @subdescricao, @preco, @imagem, @quantidade)',
-        substitutionValues: {
-          'nome': sneaker.getName,
-          'descricao': sneaker.getDescription,
-          'subdescricao': sneaker.getSubdescription,
-          'preco': sneaker.getPrice,
-          // 'imagem': imageToBytea(sneaker.getImage),
-          'quantidade': sneaker.getAmount,
-        });
+void _addAllSneakersSgbd() {
+  try {
+    for (var sneaker in ListSneakers.sneakers) {
+      Connection.connection.query(
+          'INSERT INTO tenis(nome, descricao, subdescricao, preco, imagem, quantidade) VALUES (@nome, @descricao, @subdescricao, @preco, @imagem, @quantidade)',
+          substitutionValues: {
+            'nome': sneaker.getName,
+            'descricao': sneaker.getDescription,
+            'subdescricao': sneaker.getSubdescription,
+            'preco': sneaker.getPrice,
+            'imagem': sneaker.getImage,
+            'quantidade': sneaker.getAmount,
+          });
+    }
+    print('tenis adicionados no bd');
+  } catch (e) {
+    print('Erro ao adicionar');
   }
 }
 
