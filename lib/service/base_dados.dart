@@ -1,3 +1,4 @@
+import 'dart:typed_data';
 import 'dart:ui';
 
 import 'package:sneakers_store/models/sneaker.dart';
@@ -6,11 +7,33 @@ import 'package:sneakers_store/service/connection.dart';
 
 class BaseDados {
   static final _connection = Connection.connection;
-  static late final sneakersList;
+  static final List<Sneaker> sneakersList = [];
 
-  static createSneakersList() {
-    
+  static createSneakersList() async {
+    var sneakersListsSgbd = await _connection.query('SELECT * FROM tenis');
+
+    try {
+      for (var sneakerSgbd in sneakersListsSgbd) {
+        sneakersList.add(
+          Sneaker.named(
+            name: sneakerSgbd[1],
+            description: sneakerSgbd[2],
+            subdescription: sneakerSgbd[3],
+            price: double.tryParse(sneakerSgbd[4]) ?? 0.0,
+            image: sneakerSgbd[5],
+            quantity: sneakerSgbd[6],
+          ),
+        );
+      }
+    } catch (e) {
+      print('erro');
+      print(e);
+    }
   }
+
+  static int lengthBase() => sneakersList.length;
+
+  static Sneaker getSneaker(int index) => sneakersList[index];
 
   static Future<bool> isUser(String login, String password) async {
     try {
@@ -122,7 +145,7 @@ class BaseDados {
     }
   }
 
-  static Future<Sneaker?> getSneaker(String name) async {
+  static Future<Sneaker?> getSneakerSgbd(String name) async {
     try {
       final tenisMap = await _connection.query(
         'SELECT * FROM tenis WHERE nome ILIKE @nome',

@@ -7,16 +7,24 @@
 // class ListSneakers {
 //   static final List<Sneaker> sneakers = [];
 
-//   static const String _imageYeezy = 'assets/imgs/ad_yeezy_boost350_bred.png';
-//   static const String _imageCactus = 'assets/imgs/air_force1_cactus_jack.png';
-//   static const String _imageBlack = 'assets/imgs/air_force1_offwhite_black.png';
-//   static const String _imageVolt = 'assets/imgs/air_force1_offwhite_volt.png';
-//   static const String _imageBred = 'assets/imgs/air_jordan1_bred.png';
-//   static const String _imageJack = 'assets/imgs/air_jordan1_cactus_jack.png';
-//   static const String _imageOffwhite = 'assets/imgs/air_jordan1_offwhite.png';
+//   static const String _imageYeezy =
+//       'https://i.ibb.co/VBR81Rk/ad-yeezy-boost350-bred.png';
+//   static const String _imageCactus =
+//       'https://i.ibb.co/SwF4Jmq/air-force1-cactus-jack.png';
+//   static const String _imageBlack =
+//       'https://i.ibb.co/GxmJNQv/air-force1-offwhite-black.png';
+//   static const String _imageVolt =
+//       'https://i.ibb.co/Js5LGHt/air-force1-offwhite-volt.png';
+//   static const String _imageBred =
+//       'https://i.ibb.co/hKbkQH1/air-jordan1-bred.png';
+//   static const String _imageJack =
+//       'https://i.ibb.co/hF4TdKk/air-jordan1-cactus-jack.png';
+//   static const String _imageOffwhite =
+//       'https://i.ibb.co/MBdhzsg/air-jordan1-offwhite.png';
 //   static const String _imageChicago =
-//       'assets/imgs/air_jordan1_offwhite_chicago.png';
-//   static const String imageUnc = 'assets/imgs/air_jordan1_offwhite_unc.png';
+//       'https://i.ibb.co/g9HMH5Q/air-jordan1-offwhite-chicago.png';
+//   static const String imageUnc =
+//       'https://i.ibb.co/H2pQPh4/air-jordan1-offwhite-unc.png';
 
 //   static Future<void> criarBase() async {
 //     sneakers.add(Sneaker(
@@ -24,7 +32,7 @@
 //       'Adidas sneakers',
 //       'The Yeezy Boost is the perfect sneaker for those who enjoy street style',
 //       599.00,
-//       await imageToUint8List(_imageYeezy),
+//       _imageYeezy,
 //       10,
 //     ));
 //     sneakers.add(Sneaker(
@@ -32,7 +40,7 @@
 //       'Nike sneakers',
 //       'The Air Force Cactus Jack is the perfect shoe for those who enjoy street style',
 //       649.00,
-//       await imageToUint8List(_imageCactus),
+//       _imageCactus,
 //       10,
 //     ));
 //     sneakers.add(Sneaker(
@@ -40,7 +48,7 @@
 //       'Nike sneakers',
 //       'The Air Force OffWhite Black is the perfect sneaker for those who enjoy street style',
 //       700.00,
-//       await imageToUint8List(_imageBlack),
+//       _imageBlack,
 //       10,
 //     ));
 //     sneakers.add(Sneaker(
@@ -48,7 +56,7 @@
 //       'Nike sneakers',
 //       'The Air Force OffWhite Volt is a perfect sneaker for those who enjoy street style',
 //       649.00,
-//       await imageToUint8List(_imageVolt),
+//       _imageVolt,
 //       10,
 //     ));
 //     sneakers.add(Sneaker(
@@ -56,7 +64,7 @@
 //       'Nike sneakers',
 //       'The Air Jordan Bred is the perfect sneaker for those who enjoy street style',
 //       999.00,
-//       await imageToUint8List(_imageBred),
+//       _imageBred,
 //       10,
 //     ));
 //     sneakers.add(Sneaker(
@@ -64,7 +72,7 @@
 //       'Nike sneakers',
 //       'The Air Jordan Cactus Jack is the perfect sneaker for those who enjoy street style',
 //       1100.00,
-//       await imageToUint8List(_imageJack),
+//       _imageJack,
 //       10,
 //     ));
 //     sneakers.add(Sneaker(
@@ -72,7 +80,7 @@
 //       'Nike sneakers',
 //       'The Air Jordan OffWhite is a perfect sneaker for those who enjoy street style',
 //       899.00,
-//       await imageToUint8List(_imageOffwhite),
+//       _imageOffwhite,
 //       10,
 //     ));
 //     sneakers.add(Sneaker(
@@ -80,7 +88,7 @@
 //       'Nike sneakers',
 //       'The Air Jordan OffWhite Chicago is a perfect sneaker for those who enjoy street style',
 //       1050.00,
-//       await imageToUint8List(_imageChicago),
+//       _imageChicago,
 //       10,
 //     ));
 //     sneakers.add(Sneaker(
@@ -88,13 +96,13 @@
 //       'Nike sneakers',
 //       'The Air Jordan OffWhite Unc is a perfect sneaker for those who enjoy street style',
 //       349.00,
-//       await imageToUint8List(imageUnc),
+//       imageUnc,
 //       10,
 //     ));
-//     // _addAllSneakersSgbd();
+//     _addAllSneakersSgbd();
 //   }
 
-//   static Sneaker getSneakers(int index) => sneakers[index];
+//   static Sneaker getSneaker(int index) => sneakers[index];
 
 //   static int lengthBase() => sneakers.length;
 // }
@@ -117,16 +125,4 @@
 //   } catch (e) {
 //     print('Erro ao adicionar');
 //   }
-// }
-
-// // Função para converter uma imagem PNG para bytea
-// Future<Uint8List> imageToUint8List(String imagePath) async {
-//   final ByteData data = await rootBundle.load(imagePath);
-//   return data.buffer.asUint8List();
-// }
-
-// // Função para converter bytea para imagem PNG
-// Future<void> byteaToPng(List<int> byteaData, String outputPath) async {
-//   final outputFile = File(outputPath);
-//   await outputFile.writeAsBytes(byteaData);
 // }

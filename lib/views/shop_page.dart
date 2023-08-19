@@ -4,17 +4,27 @@ import 'package:sneakers_store/service/base_dados.dart';
 import 'package:sneakers_store/utils/list_sneakers.dart';
 import 'package:sneakers_store/views/home_page.dart';
 import 'package:sneakers_store/views/purchase_page.dart';
-import 'package:sneakers_store/widgets/components/logo.dart';
 import 'package:sneakers_store/widgets/components/sneakers_info.dart';
+import 'package:sneakers_store/widgets/components/top_bar.dart';
 
 class ShopPage extends StatefulWidget {
-  const ShopPage({super.key});
+  final String userLogged;
+
+  const ShopPage({
+    super.key,
+    required this.userLogged,
+  });
 
   @override
-  State<ShopPage> createState() => _ShopPageState();
+  // ignore: no_logic_in_create_state
+  State<ShopPage> createState() => _ShopPageState(userLogged);
 }
 
 class _ShopPageState extends State<ShopPage> {
+  final String userLogged;
+
+  _ShopPageState(this.userLogged);
+
   int tempIndex = 0;
   late Sneaker sneakerCurrent;
 
@@ -35,38 +45,24 @@ class _ShopPageState extends State<ShopPage> {
           Column(
             children: [
               // Top bar
-              SizedBox(
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Padding(
-                        padding: EdgeInsets.only(left: 20),
-                        child: Logo(),
+              TopBar(
+                userLogged: userLogged,
+                button: IconButton(
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const HomePage(),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 20),
-                        child: IconButton(
-                          onPressed: () {
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const HomePage(),
-                              ),
-                            );
-                          },
-                          icon: const Icon(Icons.logout_rounded),
-                          color: const Color(0XFF03052C),
-                          iconSize: 30,
-                          style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all<Color>(
-                              const Color(0XFFCBC7C8).withOpacity(0.3),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
+                    );
+                  },
+                  icon: const Icon(Icons.logout_rounded),
+                  color: const Color(0XFF03052C),
+                  iconSize: 30,
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(
+                      const Color(0XFFCBC7C8).withOpacity(0.3),
+                    ),
                   ),
                 ),
               ),
@@ -78,7 +74,7 @@ class _ShopPageState extends State<ShopPage> {
                 height: 150,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  itemCount: ListSneakers.lengthBase(),
+                  itemCount: BaseDados.lengthBase(),
                   itemBuilder: (context, index) {
                     return SizedBox(
                       width: 150,
@@ -89,7 +85,7 @@ class _ShopPageState extends State<ShopPage> {
                           onPressed: () {
                             setState(() {
                               tempIndex = index;
-                              sneakerCurrent = ;
+                              sneakerCurrent = BaseDados.getSneaker(index);
                             });
                           },
                           style: ElevatedButton.styleFrom(
@@ -103,8 +99,8 @@ class _ShopPageState extends State<ShopPage> {
                             angle: -0.5,
                             child: Padding(
                               padding: const EdgeInsets.only(right: 8.0),
-                              child: Image.memory(
-                                ListSneakers.getSneakers(index).getImage,
+                              child: Image.network(
+                                BaseDados.getSneaker(index).getImage,
                               ),
                             ),
                           ),
@@ -117,7 +113,7 @@ class _ShopPageState extends State<ShopPage> {
               Stack(
                 children: [
                   SneakersInfo(
-                    sneaker: ListSneakers.getSneakers(tempIndex),
+                    sneaker: BaseDados.getSneaker(tempIndex),
                   ),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.end,
@@ -143,7 +139,10 @@ class _ShopPageState extends State<ShopPage> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => PurchasePage(),
+                                  builder: (context) => PurchasePage(
+                                    sneaker: sneakerCurrent,
+                                    userLogged: userLogged,
+                                  ),
                                 ),
                               );
                             },

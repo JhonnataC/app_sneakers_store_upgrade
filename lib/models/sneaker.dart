@@ -7,8 +7,8 @@ class Sneaker {
   String description;
   String subdescription;
   double price;
-  Uint8List image;
-  int amount;
+  String image;
+  int quantity;
 
   Sneaker(
     this.name,
@@ -16,18 +16,27 @@ class Sneaker {
     this.subdescription,
     this.price,
     this.image,
-    this.amount,
+    this.quantity,
   );
 
-  factory Sneaker.fromMap(PostgreSQLResult tenisMap) {
-    final tenis = tenisMap.first.first;
-    return Sneaker(
-      tenis['nome'],
-      tenis['descricao'],
-      tenis['subdescricao'],
-      tenis['preco'],
-      tenis['imagem'],
-      tenis['quantidade'],
+  Sneaker.named({
+    required this.name,
+    required this.description,
+    required this.subdescription,
+    required this.price,
+    required this.image,
+    required this.quantity,
+  });
+
+  factory Sneaker.fromMap(PostgreSQLResult sneakerMap) {
+    final tenis = sneakerMap.first.first;
+    return Sneaker.named(
+      name: tenis['nome'],
+      description: tenis['descricao'],
+      subdescription: tenis['subdescricao'],
+      price: tenis['preco'],
+      image: tenis['imagem'],
+      quantity: tenis['quantidade'],
     );
   }
 
@@ -39,7 +48,7 @@ class Sneaker {
 
   double get getPrice => price;
 
-  Uint8List get getImage => image;
+  String get getImage => image;
 
-  int get getAmount => amount;
+  int get getAmount => quantity;
 }

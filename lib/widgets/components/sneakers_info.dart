@@ -20,7 +20,7 @@ class SneakersInfo extends StatelessWidget {
               padding: const EdgeInsets.only(right: 50),
               child: Transform.rotate(
                 angle: -0.5,
-                child: Image.memory(sneaker.getImage),
+                child: Image.network(sneaker.getImage),
               ),
             ),
           ),

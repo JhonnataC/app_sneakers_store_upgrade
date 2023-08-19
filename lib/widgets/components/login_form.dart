@@ -89,7 +89,8 @@ class _InitialFormState extends State<InitialForm> {
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const ShopPage(),
+                        builder: (context) =>
+                            ShopPage(userLogged: loginController.text),
                       ),
                     );
                   } else {

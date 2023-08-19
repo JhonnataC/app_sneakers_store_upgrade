@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sneakers_store/service/base_dados.dart';
 import 'package:sneakers_store/service/connection.dart';
 import 'package:sneakers_store/views/error_page.dart';
 
@@ -6,9 +7,10 @@ import 'utils/list_sneakers.dart';
 import 'views/home_page.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  ListSneakers.criarBase();
   runApp(await Connection.conectarSGBD() ? const MyApp() : const ErrorPage());
+  // WidgetsFlutterBinding.ensureInitialized();
+  // ListSneakers.criarBase();
+  BaseDados.createSneakersList();
 }
 
 class MyApp extends StatelessWidget {
