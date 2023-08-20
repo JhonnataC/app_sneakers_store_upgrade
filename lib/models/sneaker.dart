@@ -50,5 +50,5 @@ class Sneaker {
 
   String get getImage => image;
 
-  int get getAmount => quantity;
+  int get getQuantity => quantity;
 }

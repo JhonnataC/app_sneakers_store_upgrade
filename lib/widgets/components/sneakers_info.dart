@@ -101,7 +101,7 @@ class SneakersInfo extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(left: 10),
                 child: Text(
-                  '${sneaker.getAmount}',
+                  '${sneaker.getQuantity}',
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
               ),

@@ -160,19 +160,21 @@ class BaseDados {
     }
   }
 
-  static Future<void> updateSneaker(String name, int amount) async {
+  static Future<void> updateSneaker(String name, int quantity) async {
     try {
       _connection.query(
         'UPDATE tenis SET quantidade = quantidade - @quantidade WHERE nome ILIKE @nome',
         substitutionValues: {
           'nome': name,
-          'quantidade': amount,
+          'quantidade': quantity,
         },
       );
     } catch (e) {
-      print('ERRO NO UPDATE TENIS');
+      print(e);
     }
   }
+
+  static void buySneaker(String sneaker, String user) {}
 
   // static Future<int> getIdUsuario(String login) async {
   //   final usuarioMap = await _connection.query(
@@ -189,5 +191,17 @@ class BaseDados {
 
   // static Future<int> getIdTenis(String nome) async {}
 
-  // static bool registrarCompra(Usuario usuario, Tenis tenis) {}
+  static void registrarCompra(int userId, int sneakerId) async {
+    try {
+      await _connection.query(
+          'INSERT INTO compra(usuario_id, tenis_id) VALUES (@usuario_id, @tenis_id)',
+          substitutionValues: {
+            '@usuario_id': userId,
+            '@tenis_id': sneakerId,
+          });
+      print('compra registrada');
+    } catch (e) {
+      print(e);
+    }
+  }
 }
