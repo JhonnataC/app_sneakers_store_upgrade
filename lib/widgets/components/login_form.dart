@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sneakers_store/service/base_dados.dart';
+import 'package:sneakers_store/base_dados.dart';
 import 'package:sneakers_store/views/registration_page.dart';
 
 import '../../views/shop_page.dart';

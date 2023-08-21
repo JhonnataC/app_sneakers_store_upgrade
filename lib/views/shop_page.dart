@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sneakers_store/models/sneaker.dart';
-import 'package:sneakers_store/service/base_dados.dart';
+import 'package:sneakers_store/base_dados.dart';
 import 'package:sneakers_store/utils/list_sneakers.dart';
 import 'package:sneakers_store/views/home_page.dart';
 import 'package:sneakers_store/views/purchase_page.dart';

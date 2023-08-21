@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sneakers_store/service/base_dados.dart';
+import 'package:sneakers_store/base_dados.dart';
 import 'package:sneakers_store/widgets/components/top_bar.dart';
 import 'package:sneakers_store/widgets/custom/button_custom.dart';
 
@@ -36,8 +36,6 @@ class _PurchasePageState extends State<PurchasePage> {
 
   @override
   Widget build(BuildContext context) {
-    BaseDados.updateBase();
-
     return Scaffold(
       body: Stack(
         children: [
