@@ -131,10 +131,6 @@ class _ShopPageState extends State<ShopPage> {
                                 shape: const CircleBorder(),
                                 minimumSize: const Size(75, 60),
                                 backgroundColor: const Color(0XFFA0CCF2)),
-                            child: const Icon(
-                              Icons.shopping_bag_outlined,
-                              color: Colors.white,
-                            ),
                             onPressed: () {
                               Navigator.push(
                                 context,
@@ -146,6 +142,10 @@ class _ShopPageState extends State<ShopPage> {
                                 ),
                               );
                             },
+                            child: const Icon(
+                              Icons.shopping_bag_outlined,
+                              color: Colors.white,
+                            ),
                           ),
                           const SizedBox(
                             width: 30,

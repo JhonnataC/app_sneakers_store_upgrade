@@ -26,7 +26,6 @@ class BaseDados {
         );
       }
     } catch (e) {
-      print('erro');
       print(e);
     }
   }
@@ -50,7 +49,7 @@ class BaseDados {
         return false;
       }
     } catch (e) {
-      print('ERRO NO IS USUARIO');
+      print(e);
       return false;
     }
   }
@@ -67,106 +66,56 @@ class BaseDados {
       );
       return true;
     } catch (e) {
-      print('ERRO NO ADD USUARIO');
       print(e);
       return false;
     }
   }
 
-  static Future<User?> getUser(String login, String password) async {
+  static Future<int> getIdUser(String login) async {
     try {
-      final result = await _connection.query(
-        'SELECT * FROM usuario WHERE login = @login AND senha = @senha',
+      final userMap = await _connection.query(
+        'SELECT id FROM usuario WHERE login LIKE @login',
         substitutionValues: {
           'login': login,
-          'senha': password,
         },
       );
-      if (result.isNotEmpty) {
-        final user = User.fromMap(result);
-        return user;
+      if (userMap.isNotEmpty) {
+        final user = userMap.first;
+        return user[0];
       } else {
-        return null;
+        return -1;
       }
     } catch (e) {
-      print('ERRO NO GET USUARIO');
-      return null;
+      print(e);
+      return -1;
     }
   }
 
-  static Future<bool> isSneaker(String name) async {
+  static Future<int> getIdSneaker(String sneakerName) async {
     try {
-      final sneaker = await _connection.query(
-        'SELECT * FROM tenis WHERE nome = @name',
-        substitutionValues: {
-          'name': name,
-        },
-      );
-
-      if (sneaker.isNotEmpty) {
-        return true;
-      } else {
-        return false;
-      }
-    } catch (e) {
-      print('ERRO NO IS TENIS');
-      return false;
-    }
-  }
-
-  static Future<bool> addSneaker(String name, String description,
-      String subDescription, double price, Image image, int amount) async {
-    try {
-      if (await isSneaker(name)) {
-        _connection.query(
-          'UPDATE tenis SET quantidade = quantidade + @quantidade WHERE nome ILIKE @name',
+      final sneakerMap = await _connection.query(
+          'SELECT id FROM tenis WHERE nome LIKE @nome',
           substitutionValues: {
-            'quantidade': amount,
-            'name': name,
-          },
-        );
+            'nome': sneakerName,
+          });
+      if (sneakerMap.isNotEmpty) {
+        final sneaker = sneakerMap.first;
+        return sneaker[0];
       } else {
-        _connection.query(
-          'INSERT INTO tenis(nome, descricao, subdescricao, preco, imagem, quantidade) VALUES(@nome, @descricao, @subdescricao, @preco, @imagem, @quantidade)',
-          substitutionValues: {
-            'nome': name,
-            'descricao': description,
-            'subdescricao': subDescription,
-            'preco': price,
-            'imagem': image, // Converter para bytes
-            'quantidade': amount,
-          },
-        );
+        return -1;
       }
-      return true;
     } catch (e) {
-      print('ERRO NO ADD TENIS');
-      return false;
+      print(e);
+      return -1;
     }
   }
 
-  static Future<Sneaker?> getSneakerSgbd(String name) async {
-    try {
-      final tenisMap = await _connection.query(
-        'SELECT * FROM tenis WHERE nome ILIKE @nome',
-        substitutionValues: {
-          'nome': name,
-        },
-      );
-      return Sneaker.fromMap(tenisMap);
-    } catch (e) {
-      print('ERRO NO GET TENIS');
-      return null;
-    }
-  }
-
-  static Future<void> updateSneaker(String name, int quantity) async {
+  static Future<void> _updateSneaker(int sneakerId) async {
     try {
       _connection.query(
-        'UPDATE tenis SET quantidade = quantidade - @quantidade WHERE nome ILIKE @nome',
+        'UPDATE tenis SET quantidade = quantidade - 1 WHERE id = @id',
         substitutionValues: {
-          'nome': name,
-          'quantidade': quantity,
+          'id': sneakerId,
         },
       );
     } catch (e) {
@@ -174,34 +123,25 @@ class BaseDados {
     }
   }
 
-  static void buySneaker(String sneaker, String user) {}
-
-  // static Future<int> getIdUsuario(String login) async {
-  //   final usuarioMap = await _connection.query(
-  //     'SELECT id FROM usuario WHERE login LIKE @login',
-  //     substitutionValues: {
-  //       'login': login,
-  //     },
-  //   );
-  //   if (usuarioMap.isNotEmpty) {
-  //     final usuario = usuarioMap.first;
-  //     return usuario[];
-  //   }
-  // }
-
-  // static Future<int> getIdTenis(String nome) async {}
-
-  static void registrarCompra(int userId, int sneakerId) async {
+  static Future<bool> registerPurchase(int userId, int sneakerId) async {
     try {
       await _connection.query(
           'INSERT INTO compra(usuario_id, tenis_id) VALUES (@usuario_id, @tenis_id)',
           substitutionValues: {
-            '@usuario_id': userId,
-            '@tenis_id': sneakerId,
+            'usuario_id': userId,
+            'tenis_id': sneakerId,
           });
-      print('compra registrada');
+      _updateSneaker(sneakerId);
+      updateBase();
+      return true;
     } catch (e) {
       print(e);
+      return false;
     }
+  }
+
+  static void updateBase() {
+    sneakersList.clear();
+    createSneakersList();
   }
 }

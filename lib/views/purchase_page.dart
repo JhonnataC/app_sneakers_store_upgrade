@@ -20,8 +20,24 @@ class PurchasePage extends StatefulWidget {
 }
 
 class _PurchasePageState extends State<PurchasePage> {
+  bool flagError = false;
+  bool flagSuccess = false;
+
+  void _startTimer() {
+    Future.delayed(
+      const Duration(seconds: 2),
+      () {
+        setState(() {
+          flagSuccess = false;
+        });
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    BaseDados.updateBase();
+
     return Scaffold(
       body: Stack(
         children: [
@@ -114,6 +130,30 @@ class _PurchasePageState extends State<PurchasePage> {
                       ),
                     ],
                   ),
+                  flagError
+                      ? Padding(
+                          padding: const EdgeInsets.only(left: 20),
+                          child: Text(
+                            'Sorry, error processing purchase',
+                            style: TextStyle(
+                              fontSize: 15,
+                              color: Colors.red[900],
+                            ),
+                          ),
+                        )
+                      : const SizedBox(),
+                  flagSuccess
+                      ? const Padding(
+                          padding: EdgeInsets.only(left: 20),
+                          child: Text(
+                            'Successful purchase',
+                            style: TextStyle(
+                              fontSize: 15,
+                              color: Color.fromARGB(255, 28, 207, 37),
+                            ),
+                          ),
+                        )
+                      : const SizedBox(),
                   const SizedBox(height: 50),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
@@ -124,9 +164,26 @@ class _PurchasePageState extends State<PurchasePage> {
                         width: 200,
                         child: ButtonCustom(
                           label: 'Buy now',
-                          onPressed: widget.sneaker.getQuantity >= 0
-                              ? () {
-                                  BaseDados.buySneaker(widget.sneaker.getName, widget.userLogged);
+                          onPressed: widget.sneaker.getQuantity > 0
+                              ? () async {
+                                  final userId = await BaseDados.getIdUser(
+                                      widget.userLogged);
+                                  final sneakerId =
+                                      await BaseDados.getIdSneaker(
+                                          widget.sneaker.getName);
+                                  if (!(userId == -1 || sneakerId == -1)) {
+                                    if (await BaseDados.registerPurchase(
+                                        userId, sneakerId)) {
+                                      setState(() {
+                                        flagSuccess = true;
+                                      });
+                                      _startTimer();
+                                    }
+                                  } else {
+                                    setState(() {
+                                      flagError = true;
+                                    });
+                                  }
                                 }
                               : null,
                         ),
