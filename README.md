@@ -1,16 +1,12 @@
 # sneakers_store_upgrade
 
-A new Flutter project.
+Um dos primeiros projetos que fiz, tentei fazer um visual básico de uma loja de tênis.
 
-## Getting Started
+### Detalhes
 
-This project is a starting point for a Flutter application.
+Usei ele para treinar a criação de telas mais bonitas e a integração com um SGBD (sem o uso de API ainda).
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<div align="center">
+  <img src="https://github.com/JhonnataC/app_sneakers_store_upgrade/assets/110948814/ebf87a57-1b4b-436c-a54f-b88b2e8bd9c9" width="300px" />
+  <img src="https://github.com/JhonnataC/app_sneakers_store_upgrade/assets/110948814/1bb417bc-b1e0-45e2-90b0-a6f154c62946" width="300px" />
+</div>
